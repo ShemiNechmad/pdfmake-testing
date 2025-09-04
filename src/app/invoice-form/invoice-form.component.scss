@@ -1,0 +1,80 @@
+.body {
+    width: 95%;
+    max-width: 1000px;
+    margin: 80px auto 0;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    .title {
+        margin: 30px 0;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .formBox {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+
+        .subTitle {
+            margin: 20px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .group {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+
+            .formItem {
+                width: 300px;
+            }
+        }
+    }
+
+    .signatureBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bottomBox {
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+
+        .monitor {
+            color: orange;
+        }
+
+        .exportBtn {
+            margin: 30px 40px;
+            min-width: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 36px;
+            border-radius: 35px;
+            background: rgb(0, 146, 255);
+            padding: 0px 8px;
+            border: 0;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+
+        .disabled {
+            opacity: 0.7;
+            cursor: default;
+        }
+
+        ::ng-deep .whiteMatSpinner circle {
+            stroke: rgb(255, 255, 255);
+        }
+    }
+}

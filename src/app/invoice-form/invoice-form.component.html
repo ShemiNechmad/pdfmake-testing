@@ -1,0 +1,87 @@
+<div class="body">
+    <div class="title">Invoice</div>
+
+    <form [formGroup]="invoiceForm" class="formBox">
+
+        <div class="subTitle">Personal Details</div>
+
+        <div class="group">
+
+            <mat-form-field appearance="outline" class="formItem">
+                <mat-label>Full Name</mat-label>
+                <input matInput type="text" formControlName="fullName" maxlength="40" />
+                <mat-error *ngIf="form['fullName'].touched && form['fullName'].invalid">
+                    Full name is required.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="formItem">
+                <mat-label>Email Address</mat-label>
+                <input matInput type="email" formControlName="email" maxlength="40" />
+                <mat-error *ngIf="form['email'].touched && form['email'].invalid">
+                    <span *ngIf="form['email'].errors?.['required']">Email is required.</span>
+                    <span *ngIf="form['email'].errors?.['email']">Enter a valid email.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="formItem">
+                <mat-label>Phone Number (optional)</mat-label>
+                <input matInput type="text" formControlName="phone" maxlength="10" />
+                <mat-error *ngIf="form['phone'].touched && form['phone'].invalid">
+                    Phone must be 10 digits.
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+        <div class="subTitle">Invoice Details</div>
+
+        <div class="group">
+
+            <mat-form-field appearance="outline" class="formItem">
+                <mat-label>Invoice Number</mat-label>
+                <input matInput type="text" formControlName="invoiceNumber" maxlength="40" />
+                <mat-error *ngIf="form['invoiceNumber'].touched && form['invoiceNumber'].invalid">
+                    <span *ngIf="form['invoiceNumber'].errors?.['required']">Invoice number is required.</span>
+                    <span *ngIf="form['invoiceNumber'].errors?.['pattern']">Only letters and numbers allowed.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="formItem">
+                <mat-label>Amount</mat-label>
+                <input matInput type="number" formControlName="amount" />
+                <mat-error *ngIf="form['amount'].touched && form['amount'].invalid">
+                    <span *ngIf="form['amount'].errors?.['required']">Amount is required.</span>
+                    <span *ngIf="form['amount'].errors?.['min']">Amount must be greater than 0.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="formItem">
+                <mat-label>Invoice Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="invoiceDate" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form['invoiceDate'].touched && form['invoiceDate'].invalid">
+                    Date is required.
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+        <div class="signatureBox">
+            <app-signature (changeUrlData)="form['signature'].setValue($event)"></app-signature>
+        </div>
+
+
+    </form>
+
+    <div class="bottomBox">
+        <div class="monitor">{{monitor}}</div>
+        <button class="exportBtn" [ngClass]="{'disabled': isExportDisabled}" (click)="exportPDF()"
+            [disabled]="isExportDisabled">
+            <div *ngIf="isLoadingReq" style="width: 20px;"></div>
+            <span>Export PDF</span>
+            <mat-spinner *ngIf="isLoadingReq" [diameter]="20" class="whiteMatSpinner"></mat-spinner>
+        </button>
+    </div>
+</div>

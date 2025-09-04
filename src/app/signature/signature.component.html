@@ -1,0 +1,8 @@
+<div class="body">
+    <div class="subTitle">Signature*</div>
+
+    <signature-pad #signature [options]="signaturePadOptions" (drawStart)="onDrawStart($event)"
+        (drawEnd)="onDrawEnd($event)"></signature-pad>
+
+    <button class="clearSigBtn" (click)="clearSignature()">Clear</button>
+</div>
