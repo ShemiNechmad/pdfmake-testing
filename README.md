@@ -1,11 +1,18 @@
 node -v: 18.18.0
+
 angular 15
 
 select a folder,
+
 git clone https://github.com/ShemiNechmad/pdfmake-testing.git
+
 cd [project folder]
+
 npm install (for node-modules)
+
 ng serve / ng build
+
+
 
 
 # PdfGeneration
